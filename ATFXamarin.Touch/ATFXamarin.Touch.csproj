@@ -89,16 +89,12 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
-    <Compile Include="EngagementCell.cs" />
-    <Compile Include="EngagementCell.designer.cs">
-      <DependentUpon>EngagementCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\EngagementView.designer.cs">
       <DependentUpon>EngagementView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EngCell.cs" />
-    <Compile Include="Views\EngCell.designer.cs">
-      <DependentUpon>EngCell.cs</DependentUpon>
+    <Compile Include="Views\EngagementCell.cs" />
+    <Compile Include="Views\EngagementCell.designer.cs">
+      <DependentUpon>EngagementCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +161,6 @@
     <BundleResource Include="Resources\B-icon-21.png" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Views\EngCell.xib" />
+    <InterfaceDefinition Include="Views\EngagementCell.xib" />
   </ItemGroup>
 </Project>

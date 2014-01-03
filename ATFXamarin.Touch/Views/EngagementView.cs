@@ -12,21 +12,21 @@ namespace ATFXamarin.Touch.Views
 	partial class EngagementView : MvxViewController
     {
         
-
+		///*
 		public override void ViewDidLoad()
 		{
-			View = new UIView(){ BackgroundColor = UIColor.White};
+			View = new UIView(){ BackgroundColor = UIColor.Black};
 			base.ViewDidLoad();
 
-			var textField = new UITextField(new RectangleF(10, 10, 300, 40));
-			Add(textField);
+			//var textField = new UITextField(new RectangleF(10, 10, 300, 40));
+			//Add(textField);
 
 			var activity = new UIActivityIndicatorView(new RectangleF(130, 130, 60, 60));
 			activity.Color = UIColor.Orange;
 
 			//Add(activity);
 
-			var tableView = new UITableView(new RectangleF(0, 50, 320, 500), UITableViewStyle.Plain);
+			var tableView = new UITableView(new RectangleF(0, 0, 320, 500), UITableViewStyle.Plain);
 			Add(tableView);
 
 			// choice here:
@@ -38,8 +38,10 @@ namespace ATFXamarin.Touch.Views
 			//     tableView.RowHeight = 88;
 			//     var source = new MvxSimpleTableViewSource(tableView, BookCell.Key, BookCell.Key);
 
-			tableView.RowHeight = 88;
-			var source = new MvxSimpleTableViewSource(tableView, EngCell.Key, EngCell.Key);
+			tableView.RowHeight = 89;
+			tableView.BackgroundColor = UIColor.White;
+
+			var source = new MvxSimpleTableViewSource(tableView, EngagementCell.Key, EngagementCell.Key);
 			tableView.Source = source;
 
 			var set = this.CreateBindingSet<EngagementView, ATFXamarin.Core.ViewModels.EngagementViewModel>();
@@ -53,18 +55,21 @@ namespace ATFXamarin.Touch.Views
 			tableView.ReloadData();
 		}
 
-        //public override void ViewDidLoad()
-        //{
-        //    base.ViewDidLoad();
+		/*public override void ViewDidLoad()
+        {
+           base.ViewDidLoad();
 
-        //    var source = new MvxStandardTableViewSource(TableView, "TitleText ClientName;ImageUrl ImageURL");
-        //    TableView.Source = source;
+			var tableView = new UITableView(new RectangleF(0, 50, 320, 500), UITableViewStyle.Plain);
+			Add(tableView);
 
-        //    var set = this.CreateBindingSet<EngagementView, ATFXamarin.Core.ViewModels.EngagementViewModel>();
-        //    set.Bind(source).To(vm => vm.Engagements);
-        //    set.Apply();
+			var source = new MvxStandardTableViewSource(tableView, "TitleText ClientName;ImageUrl ImageURL");
+			tableView.Source = source;
 
-        //    TableView.ReloadData();
-        //}   
+           var set = this.CreateBindingSet<EngagementView, ATFXamarin.Core.ViewModels.EngagementViewModel>();
+          set.Bind(source).To(vm => vm.Engagements);
+           set.Apply();
+
+			tableView.ReloadData();
+		}   */
 	}
 }

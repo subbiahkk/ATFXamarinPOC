@@ -20,14 +20,14 @@ namespace ATFXamarin.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (DescriptionLabel != null) {
-				DescriptionLabel.Dispose ();
-				DescriptionLabel = null;
-			}
-
 			if (ClientLabel != null) {
 				ClientLabel.Dispose ();
 				ClientLabel = null;
+			}
+
+			if (DescriptionLabel != null) {
+				DescriptionLabel.Dispose ();
+				DescriptionLabel = null;
 			}
 		}
 	}

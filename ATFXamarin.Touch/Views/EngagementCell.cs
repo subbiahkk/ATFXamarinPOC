@@ -8,15 +8,15 @@ using ATFXamarin.Core.Services;
 
 namespace ATFXamarin.Touch
 {
-	public partial class EngCell : MvxTableViewCell
+	public partial class EngagementCell : MvxTableViewCell
 	{
-		public static readonly UINib Nib = UINib.FromName ("EngCell", NSBundle.MainBundle);
-		public static readonly NSString Key = new NSString ("EngCell");
+		public static readonly UINib Nib = UINib.FromName ("EngagementCell", NSBundle.MainBundle);
+		public static readonly NSString Key = new NSString ("EngagementCell");
 
-		public EngCell (IntPtr handle) : base (handle)
+		public EngagementCell (IntPtr handle) : base (handle)
 		{
 			this.DelayBind(() => {
-				var set = this.CreateBindingSet<EngCell, Engagement> ();
+				var set = this.CreateBindingSet<EngagementCell, Engagement> ();
 				set.Bind(DescriptionLabel).To (item => item.Description);
 				set.Bind (ClientLabel).To (item => item.ClientName);
 				//set.Bind (_loader).To (item => item.volumeInfo.imageLinks.thumbnail); //smallThumbnail);
@@ -24,9 +24,9 @@ namespace ATFXamarin.Touch
 			});
 		}
 
-		public static EngCell Create ()
+		public static EngagementCell Create ()
 		{
-			return (EngCell)Nib.Instantiate (null, null) [0];
+			return (EngagementCell)Nib.Instantiate (null, null) [0];
 		}
 	}
 }
