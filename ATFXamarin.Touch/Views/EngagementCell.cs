@@ -8,7 +8,7 @@ using ATFXamarin.Core.Services;
 
 namespace ATFXamarin.Touch
 {
-	public partial class EngagementCell : MvxTableViewCell
+	public partial class EngagementCell : MvxTableViewCell 
 	{
 		public static readonly UINib Nib = UINib.FromName ("EngagementCell", NSBundle.MainBundle);
 		public static readonly NSString Key = new NSString ("EngagementCell");
