@@ -15,7 +15,9 @@ namespace ATFXamarin.Touch.Views
 		///*
 		public override void ViewDidLoad()
 		{
-			View = new UIView(){ BackgroundColor = UIColor.Black};
+			View = new UIView(){ 
+				//	BackgroundColor = UIColor.Black
+			};
 			base.ViewDidLoad();
 
 			//var textField = new UITextField(new RectangleF(10, 10, 300, 40));
@@ -26,7 +28,8 @@ namespace ATFXamarin.Touch.Views
 
 			//Add(activity);
 
-			var tableView = new UITableView(new RectangleF(0, 0, 320, 500), UITableViewStyle.Plain);
+			var tableView = new UITableView(new RectangleF(0, 0, 980, 1208), UITableViewStyle.Plain);
+			//var tableView = new UITableView(View., UITableViewStyle.Plain);
 			Add(tableView);
 
 			// choice here:
@@ -48,6 +51,7 @@ namespace ATFXamarin.Touch.Views
 			//set.Bind(textField).To(vm => vm.SearchTerm);
 			//set.Bind(textField).For(t => t.Enabled).To(vm => vm.IsLoading).WithConversion("InverseBool");
 			set.Bind(source).To(vm => vm.Engagements);
+			set.Bind (source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
 			//set.Bind(activity).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
 			//set.Bind(tableView).For("Visibility").To(vm => vm.IsLoading).WithConversion("InvertedVisibility");
 			set.Apply();

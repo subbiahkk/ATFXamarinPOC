@@ -48,6 +48,9 @@
     <ConsolePause>false</ConsolePause>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -95,6 +98,12 @@
     <Compile Include="Views\EngagementCell.cs" />
     <Compile Include="Views\EngagementCell.designer.cs">
       <DependentUpon>EngagementCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\CameraHelper.cs" />
+    <Compile Include="Bootstrap\PictureChooserPluginBootstrap.cs" />
+    <Compile Include="Views\EvidenceView.cs" />
+    <Compile Include="Views\EvidenceView.designer.cs">
+      <DependentUpon>EvidenceView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +155,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.0.14\lib\portable-win+net45+MonoAndroid+MonoTouch+sl40+wp71\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.PictureChooser">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.PictureChooser.3.0.14\lib\MonoTouch\Cirrious.MvvmCross.Plugins.PictureChooser.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.PictureChooser.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.PictureChooser.3.0.14\lib\MonoTouch\Cirrious.MvvmCross.Plugins.PictureChooser.Touch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ATFXamarin.Core\ATFXamarin.Core.csproj">
@@ -159,8 +174,17 @@
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\B-icon-21.png" />
+    <BundleResource Include="Resources\camera.png" />
+    <BundleResource Include="Resources\Engagement.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Iphoto.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\EngagementCell.xib" />
+    <InterfaceDefinition Include="Views\EvidenceView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\EvidenceView_iPad.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
   </ItemGroup>
 </Project>

@@ -68,6 +68,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.0.14\lib\portable-win+net45+MonoAndroid+MonoTouch+sl40+wp71\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.PictureChooser">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.PictureChooser.3.0.14\lib\portable-win+net45+MonoAndroid+MonoTouch+sl40+wp71\Cirrious.MvvmCross.Plugins.PictureChooser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
