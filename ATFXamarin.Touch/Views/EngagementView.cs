@@ -5,13 +5,15 @@ using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Cirrious.MvvmCross.Binding.Touch.Views;
+using System;
 
 namespace ATFXamarin.Touch.Views
 {
     [Register("EngagementView")]
 	partial class EngagementView : MvxViewController
     {
-        
+
+
 		///*
 		public override void ViewDidLoad()
 		{
@@ -20,26 +22,14 @@ namespace ATFXamarin.Touch.Views
 			};
 			base.ViewDidLoad();
 
-			//var textField = new UITextField(new RectangleF(10, 10, 300, 40));
-			//Add(textField);
+			this.Title = "Engagements";
 
 			var activity = new UIActivityIndicatorView(new RectangleF(130, 130, 60, 60));
 			activity.Color = UIColor.Orange;
 
-			//Add(activity);
-
-			var tableView = new UITableView(new RectangleF(0, 0, 980, 1208), UITableViewStyle.Plain);
+			var tableView = new UITableView(new RectangleF(0, 0, 1200, 1208), UITableViewStyle.Plain);
 			//var tableView = new UITableView(View., UITableViewStyle.Plain);
 			Add(tableView);
-
-			// choice here:
-			//
-			//   for original demo use:
-			//     var source = new MvxStandardTableViewSource(tableView, "TitleText");
-			//
-			//   or for prettier cells from XIB file use:
-			//     tableView.RowHeight = 88;
-			//     var source = new MvxSimpleTableViewSource(tableView, BookCell.Key, BookCell.Key);
 
 			tableView.RowHeight = 89;
 			tableView.BackgroundColor = UIColor.White;
@@ -48,32 +38,42 @@ namespace ATFXamarin.Touch.Views
 			tableView.Source = source;
 
 			var set = this.CreateBindingSet<EngagementView, ATFXamarin.Core.ViewModels.EngagementViewModel>();
-			//set.Bind(textField).To(vm => vm.SearchTerm);
-			//set.Bind(textField).For(t => t.Enabled).To(vm => vm.IsLoading).WithConversion("InverseBool");
 			set.Bind(source).To(vm => vm.Engagements);
 			set.Bind (source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
-			//set.Bind(activity).For("Visibility").To(vm => vm.IsLoading).WithConversion("Visibility");
-			//set.Bind(tableView).For("Visibility").To(vm => vm.IsLoading).WithConversion("InvertedVisibility");
 			set.Apply();
 
 			tableView.ReloadData();
 		}
 
-		/*public override void ViewDidLoad()
-        {
-           base.ViewDidLoad();
+		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		{
+			// we're passed to orientation that it will rotate to. in our case, we could
+			// just return true, but this switch illustrates how you can test for the 
+			// different cases
+			switch (toInterfaceOrientation) {
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+			default:
+				return true;
+			}
+		}
 
-			var tableView = new UITableView(new RectangleF(0, 50, 320, 500), UITableViewStyle.Plain);
-			Add(tableView);
+		/// <summary>
+		/// is called when the OS is going to rotate the application. It handles rotating the status bar
+		/// if it's present, as well as it's controls like the navigation controller and tab bar, but you 
+		/// must handle the rotation of your view and associated subviews. This call is wrapped in an 
+		/// animation block in the underlying implementation, so it will automatically animate your control
+		/// repositioning.
+		/// </summary>
+		public override void WillAnimateRotation (UIInterfaceOrientation toInterfaceOrientation, double duration)
+		{
 
-			var source = new MvxStandardTableViewSource(tableView, "TitleText ClientName;ImageUrl ImageURL");
-			tableView.Source = source;
-
-           var set = this.CreateBindingSet<EngagementView, ATFXamarin.Core.ViewModels.EngagementViewModel>();
-          set.Bind(source).To(vm => vm.Engagements);
-           set.Apply();
-
-			tableView.ReloadData();
-		}   */
+			base.WillAnimateRotation (toInterfaceOrientation, duration);
+			this.Title = DateTime.Now.ToString ();
+			// call our helper method to position the controls
+			//PositionControls (toInterfaceOrientation);
+		}
 	}
 }

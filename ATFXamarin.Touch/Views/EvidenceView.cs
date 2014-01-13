@@ -43,19 +43,6 @@ namespace ATFXamarin.Touch
 
 			this.SaveEvidenceButton.Layer.CornerRadius = 5;
 
-			CAGradientLayer cagLayer = new CAGradientLayer ();
-			cagLayer.Bounds = SaveEvidenceButton.Bounds;
-
-
-			CGColor gradColor1 = new CGColor (13.0f / 255.0f, 116.0f / 255.0f, 1.0f,1.0f);
-			CGColor gradColor2 = new CGColor (0.0f, 53.0f / 255.0f, 126.0f / 255.0f,1.0f);
-
-			cagLayer.Colors = new CGColor[2] { gradColor1, gradColor2 };
-			cagLayer.CornerRadius = 12.0f;
-			cagLayer.CornerRadius = SaveEvidenceButton.Layer.CornerRadius;
-			SaveEvidenceButton.Layer.InsertSublayer (cagLayer, 0);
-			SaveEvidenceButton.ClipsToBounds = true;
-
 			var set = this.CreateBindingSet<EvidenceView,EvidenceViewModel >();
 			set.Bind(EngagementDescLabel).To(vm => vm.Evidence.Engagement.Description);
 			set.Bind(ClientLabel).To(vm => vm.Evidence.Engagement.ClientName);
@@ -66,6 +53,14 @@ namespace ATFXamarin.Touch
 			//set.Bind (NotesLabel).To (vm => vm.Notes);
 			set.Bind(EvidenceImage).To(vm => vm.Bytes).WithConversion("InMemoryImage");
 			set.Apply ();
+
+			this.SummaryText.ShouldReturn = (tf) => // Use reference.
+			{
+				// This delegate will be executed at a later time, ensure its owner
+				// object is rooted with a reference.
+				tf.ResignFirstResponder();
+				return true;
+			} ;
 
 			this.SaveEvidenceButton.TouchUpInside += (sender, e) => {
 
@@ -86,6 +81,30 @@ namespace ATFXamarin.Touch
 			};
 			
 
+		}
+
+		/// <summary>
+		/// is called when the OS is going to rotate the application. It handles rotating the status bar
+		/// if it's present, as well as it's controls like the navigation controller and tab bar, but you 
+		/// must handle the rotation of your view and associated subviews. This call is wrapped in an 
+		/// animation block in the underlying implementation, so it will automatically animate your control
+		/// repositioning.
+		/// </summary>
+		public override void WillAnimateRotation (UIInterfaceOrientation toInterfaceOrientation, double duration)
+		{
+
+			base.WillAnimateRotation (toInterfaceOrientation, duration);
+			if (this.HeaderView.Layer.Frame.Width != 1000f) {
+				//float width = 1000f;
+				this.HeaderView.Frame = new RectangleF(9, 103, 1000, 169);
+				this.EvidenceBodyView.Frame = new RectangleF(9, 307, 1000, 616);
+				//this.HeaderView.Layer.Frame.Width = width;
+			} 
+			else {
+				this.HeaderView.Frame = new RectangleF(9, 103, 750, 169);
+				this.EvidenceBodyView.Frame = new RectangleF(9, 307, 750, 616);
+				//this.HeaderView.Layer.Frame.Width  = 750f;
+			}
 		}
 	}
 }

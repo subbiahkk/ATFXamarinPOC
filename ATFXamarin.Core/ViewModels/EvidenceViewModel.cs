@@ -33,7 +33,7 @@ namespace ATFXamarin.Core.ViewModels
 
 		#region Properties
 
-		private string _Notes = "Evidence Summary";
+		private string _Notes ;
 		public string Notes
 		{
 			get { return _Notes; }
