@@ -17,7 +17,8 @@ namespace ATFXamarin.Core
 
            // Mvx.RegisterSingleton<ISimpleRestService>(new SimpleRestService());           
 
-            RegisterAppStart<EngagementViewModel>();
+			RegisterAppStart<EngagementViewModel>();
+			//RegisterAppStart<WOPIViewModel>();
         }
     }
 }

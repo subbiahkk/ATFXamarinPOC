@@ -36,13 +36,31 @@ namespace ATFXamarin.Core.ViewModels
             }
         }
 
-        private void ShowEvidence(Engagement engagement)
+		private Cirrious.MvvmCross.ViewModels.MvxCommand<Engagement> _EditEvidenceCommand;
+		public System.Windows.Input.ICommand EditEvidenceCommand
+		{
+			get
+			{
+				_EditEvidenceCommand = _EditEvidenceCommand ?? new Cirrious.MvvmCross.ViewModels.MvxCommand<Engagement>(EditEvidenceDocument);
+				return _ItemSelectedCommand;
+			}
+		}
+
+		public void ShowEvidence(Engagement engagement)
         {
             string strEngagement = Newtonsoft.Json.JsonConvert.SerializeObject(engagement);
             ShowViewModel<EvidenceViewModel>(new { eng = strEngagement });
            
            
         }
+
+		public void EditEvidenceDocument(Engagement engagement)
+		{
+			string strEngagement = Newtonsoft.Json.JsonConvert.SerializeObject(engagement);
+			ShowViewModel<WOPIViewModel>(new { eng = strEngagement });
+
+
+		}
 
     }
 }

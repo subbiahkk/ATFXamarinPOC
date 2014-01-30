@@ -110,6 +110,11 @@
     <Compile Include="Views\EvidenceView.designer.cs">
       <DependentUpon>EvidenceView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\WOPIView.cs" />
+    <Compile Include="Views\WOPIView.designer.cs">
+      <DependentUpon>WOPIView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommandTypeEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyViewController.cs" />
@@ -182,6 +187,8 @@
     <InterfaceDefinition Include="Views\EngagementCell.xib" />
     <InterfaceDefinition Include="Views\EvidenceView_iPad.xib" />
     <InterfaceDefinition Include="Views\EvidenceView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\WOPIView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\WOPIView_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\B-icon-21.png" />

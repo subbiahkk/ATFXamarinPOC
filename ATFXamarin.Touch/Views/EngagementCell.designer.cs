@@ -16,7 +16,13 @@ namespace ATFXamarin.Touch
 		MonoTouch.UIKit.UILabel ClientLabel { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIView contentView { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel DescriptionLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -28,6 +34,16 @@ namespace ATFXamarin.Touch
 			if (DescriptionLabel != null) {
 				DescriptionLabel.Dispose ();
 				DescriptionLabel = null;
+			}
+
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
+			}
+
+			if (contentView != null) {
+				contentView.Dispose ();
+				contentView = null;
 			}
 		}
 	}

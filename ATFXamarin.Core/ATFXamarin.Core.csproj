@@ -51,6 +51,7 @@
     <Compile Include="ViewModels\EvidenceViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\EngagementViewModel.cs" />
+    <Compile Include="ViewModels\WOPIViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore">

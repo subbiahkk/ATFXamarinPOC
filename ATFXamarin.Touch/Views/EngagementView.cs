@@ -6,6 +6,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Cirrious.MvvmCross.Binding.Touch.Views;
 using System;
+using ATFXamarin.Core.Services;
 
 namespace ATFXamarin.Touch.Views
 {
@@ -37,12 +38,48 @@ namespace ATFXamarin.Touch.Views
 			var source = new MvxSimpleTableViewSource(tableView, EngagementCell.Key, EngagementCell.Key);
 			tableView.Source = source;
 
+			tableView.UserInteractionEnabled = true;
+
+
 			var set = this.CreateBindingSet<EngagementView, ATFXamarin.Core.ViewModels.EngagementViewModel>();
 			set.Bind(source).To(vm => vm.Engagements);
-			set.Bind (source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
+			//set.Bind (source).For(s => s.SelectionChangedCommand).To(vm => vm.ItemSelectedCommand);
+			//set.Bind (source).For(s => s.AccessoryTappedCommand).To(vm => vm.ItemSelectedCommand);
 			set.Apply();
 
 			tableView.ReloadData();
+
+			//EngagementCell ec = new EngagementCell ();
+
+			EngagementCell.SingleTouchEvent	+=	new EngagementCell.SingleTouch (SingleTouchEvent);
+		}
+
+		public void SingleTouchEvent(CommandTypeEnum commandType,Engagement engagement)
+		{
+			switch(commandType)
+			{
+			case CommandTypeEnum.AddEvidence:
+
+				((ATFXamarin.Core.ViewModels.EngagementViewModel)this.ViewModel).ShowEvidence (engagement);
+				break;
+			case CommandTypeEnum.EditDocuments:
+				((ATFXamarin.Core.ViewModels.EngagementViewModel)this.ViewModel).EditEvidenceDocument (engagement);
+				Console.WriteLine (commandType.ToString ());
+				break;
+			}
+		}
+
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
+		{
+			base.TouchesBegan (touches, evt);
+			UITouch touch = touches.AnyObject as UITouch;
+			if (touch != null)
+			{
+				if (touch.TapCount == 2) 
+				{
+					// do something with the double touch.
+				}
+			}
 		}
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
